@@ -16,7 +16,7 @@ from backend.database import Base, get_db
 from backend.models import Category, Task, TaskStatus, TaskPriority
 
 # Use a separate test database for tests
-SQLALCHEMY_DATABASE_URL = "sqlite:///./test.db"
+SQLALCHEMY_DATABASE_URL = "postgresql://postgres:password@localhost:5432/test_db"
 engine = create_engine(
     SQLALCHEMY_DATABASE_URL, connect_args={"check_same_thread": False}
 )

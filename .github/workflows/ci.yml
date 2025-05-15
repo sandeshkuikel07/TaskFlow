@@ -40,6 +40,14 @@ jobs:
         with:
           python-version: "3.11"
 
+      - name: ⏳ Wait for Postgres to be ready
+        run: |
+          for i in {1..30}; do
+            pg_isready -h localhost -p 5432 && break
+            echo "Waiting for Postgres..."
+            sleep 2
+          done
+
       - name: 📦 Install dependencies
         run: |
           python -m pip install --upgrade pip

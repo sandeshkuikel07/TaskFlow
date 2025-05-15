@@ -1,7 +1,8 @@
 site_name: TaskFlow Documentation
 site_description: Documentation for the TaskFlow FastAPI backend project
 site_author: Sandesh Kuikel
-# site_url: https://your-docs-site-url.com  # (optional, or use GitHub Pages link)
+
+site_url: https://sandeshkuikel07.github.io/TaskFlow/
 
 theme:
   name: material

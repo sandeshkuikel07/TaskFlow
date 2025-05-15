@@ -1,0 +1,25 @@
+site_name: TaskFlow Documentation
+site_description: Documentation for the TaskFlow FastAPI backend project
+site_author: Sandesh Kuikel
+# site_url: https://your-docs-site-url.com  # (optional, or use GitHub Pages link)
+
+theme:
+  name: material
+
+nav:
+  - Home: index.md
+  - Setup: setup.md
+  - Docker Deployment: docker.md
+  - API Reference: api.md
+  - Environment: env.md
+
+markdown_extensions:
+  - toc:
+      permalink: true
+  - admonition
+  - codehilite
+  - pymdownx.superfences
+  - pymdownx.details
+
+plugins:
+  - search

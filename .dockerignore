@@ -1,0 +1,41 @@
+# Ignore Python cache
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Ignore virtual environments
+venv/
+.env/
+.venv/
+
+# Ignore environment variables
+.env
+
+# Ignore test artifacts
+tests/__pycache__/
+*.pytest_cache/
+.coverage
+htmlcov/
+*.log
+
+# Ignore local configuration and editor settings
+*.swp
+*.swo
+*.bak
+*.tmp
+.DS_Store
+.idea/
+.vscode/
+
+# Ignore compiled frontend files (if you had one)
+node_modules/
+dist/
+build/
+
+# Git-related
+.git/
+.gitignore
+
+# Docker-related
+.dockerignore
+docker-compose.override.yml

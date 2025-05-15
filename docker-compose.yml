@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  taskflow:
+    build: .
+    container_name: taskflow-backend
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    volumes:
+      - ./backend:/app/backend  # For local development, allows live code changes
+    depends_on:
+      - db  # Ensures the db service starts first
+    networks:
+      - taskflow-network
+
+  db:
+    image: postgres:14
+    container_name: taskflow-db
+    restart: unless-stopped
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: taskflow
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - taskflow-network
+
+networks:
+  taskflow-network:
+    driver: bridge
+
+volumes:
+  postgres_data:

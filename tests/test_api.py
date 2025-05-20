@@ -16,9 +16,10 @@ from backend.database import Base, get_db
 from backend.models import Category, Task, TaskStatus, TaskPriority
 
 # Use a separate test database for tests
-SQLALCHEMY_DATABASE_URL = "sqlite:///./test.db"
+SQLALCHEMY_DATABASE_URL = os.getenv("DATABASE_URL")
 engine = create_engine(
-    SQLALCHEMY_DATABASE_URL, connect_args={"check_same_thread": False}
+    SQLALCHEMY_DATABASE_URL
+    # Remove the SQLite-specific connect_args
 )
 TestingSessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
@@ -239,16 +240,3 @@ def test_filter_tasks_by_status(client, db):
     data = response.json()
     assert len(data) == 1
     assert data[0]["title"] == "Completed Task"
-
-
-
-# test_health_check: Verifies the API health endpoint returns a 200 status code and confirms database connectivity with the expected JSON response.
-# test_create_category: Tests the API can successfully create a new category with name and color attributes, returning proper data with ID and timestamp.
-# test_create_task: Validates task creation with various attributes including title, description, status, priority, category association, and due date.
-# test_read_tasks: Ensures the API correctly returns a list of all tasks in the database with proper data structure.
-# test_update_task: Confirms the ability to modify existing task properties like title and status through the PUT endpoint.
-# test_delete_task: Verifies that tasks can be properly deleted and subsequent retrieval attempts return a 404 error.
-# test_read_category: Tests that a specific category can be retrieved by ID with all its attributes correctly populated.
-# test_update_category: Validates that category properties can be updated and the changes are properly persisted in the database.
-# test_delete_category: Ensures categories can be deleted and confirms deletion with a 404 response on subsequent retrieval attempts.
-# test_filter_tasks_by_status: Tests the API's ability to filter tasks by their status (pending, in-progress, completed) using query parameters.
